@@ -20,17 +20,26 @@ export default function AddProduct() {
     formData.append("subCategory", productDetails.subCategory);
     formData.append("price", productDetails.price);
     formData.append("stockQuantity", productDetails.stockQuantity);
-
-    await axios.post(
-      `${apiUrl}/api/seller/add-product`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "auth-token": token
-        },
-      }
-    );
+    try {
+      await axios.post(
+        `${apiUrl}/api/seller/add-product`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "auth-token": token
+          },
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            console.log('Upload Progress:', percentCompleted);
+            // Update UI with the upload progress if needed
+          },
+        }
+      );
+    } catch (error) {
+      console.error('Error uploading product:', error);
+      showToast('Error uploading product', 'error');
+    }
     setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
     setImage(null);
     showToast('Product Added', 'success');
