@@ -1,0 +1,44 @@
+/* CARDS */
+.card-title {
+  padding: 0px;
+  font-size: 17px;
+}
+
+.seller {
+  padding: 0px;
+  font-size: 12px;
+  height: 5px;
+  color: rgb(3, 3, 103);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.card-img-top {
+  height: 280px;
+}
+
+.rate span,
+.rate del {
+  font-size: 15px;
+}
+
+.rate strong {
+  color: rgb(9, 177, 9);
+  font-size: 20px;
+}
+
+.delivery-days {
+  font-size: 12px;
+}
+
+.atc-btn-box {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+::before {
+  content: "";
+  background-color: black;
+}

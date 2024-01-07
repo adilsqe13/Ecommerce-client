@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+header {
+    background-color: #212529;
+    height: 61px;
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top: -5px;
+    z-index: 102;
+}
+
+.middle-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.middle-main-box {
+    display: flex;
+    width: 100%;
+}
+
+/* Logo box */
+.logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 210px;
+    color: white;
+}
+
+.mini-screen-logo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 210px;
+    color: white;
+    position: absolute;
+    left: 15px;
+}
+
+
+.my {
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+    font-family: cursive, Arial, sans-serif;
+}
+
+.shopper {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: cursive, Arial, sans-serif;
+}
+
+/* End logo box */
+
+
+
+/* search box */
+.search-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    background-color: #212529;
+}
+
+.search-box input {
+    width: 70%;
+    height: 38px;
+    outline: none;
+    padding-left: 20px;
+}
+
+.search-box button {
+    margin: 0px;
+    height: 38px;
+    width: 100px;
+    box-shadow: 1px 1px 5px black;
+    font-weight: 500;
+}
+
+.search-box button:hover {
+    color: black;
+}
+
+.search-box button:active {
+    box-shadow: none;
+}
+
+/* End search box */
+
+
+
+/* Login box */
+.login-box {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+.login-box button {
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-weight: 500;
+    width: 100px;
+    height: 46px;
+    letter-spacing: 1px;
+    font-size: 19px;
+}
+
+.login-box button:hover {
+    border: none;
+    background-color: black;
+}
+
+.login-box button:active {
+    background-color: transparent;
+
+}
+
+/* End login box */
+
+
+
+/* cart box */
+.cart-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 45px;
+    margin-top: 1px;
+    border-radius: 10px;
+    position: relative;
+    right: 0px;
+}
+
+.cart-box:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+.cart-box:active {
+    background-color: transparent;
+}
+
+.mycart {
+    color: white;
+}
+
+.cart-box span {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* End cart box */
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    min-width: 360px;
+    min-width: 360px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    padding: 35px 0;
+}

@@ -1,0 +1,92 @@
+footer {
+    margin-top: -40px;
+    min-width: 360px;
+}
+
+.mt-5 {
+    background-color: #212529;
+    color: rgb(214, 212, 212);
+}
+
+.footer-company-box {
+    margin-top: 30px;
+}
+
+.footer-logo-box {
+    width: 250px;
+    margin: auto;
+    background-color: rgb(28, 27, 27);
+    box-shadow: 0px 2px 20px black;
+}
+
+.footer-logo-box .my,
+.footer-logo-box .shopper {
+    font-size: 40px;
+}
+
+.social-media-icons {
+    width: 233px;
+    margin: auto;
+}
+
+.icons {
+    margin-left: 10px;
+}
+
+.icons:hover {
+    padding: 1px;
+    cursor: pointer;
+}
+
+.icons:active {
+    padding: 0px;
+}
+
+footer a:hover {
+    padding: 3px;
+
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(28, 27, 27);
+    color: rgb(231, 231, 231);
+    height: 30px;
+    min-width: 360px;
+}
+
+.fw-bold:hover {
+    padding: 0px;
+
+}
+
+/* Media Query For Mini Screen*/
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    #footer-company-box {
+        height: 150px;
+        width: 253px;
+        margin-left: -60px;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    #footer-products {
+        height: 200px;
+        width: 110px;
+
+    }
+
+    #footer-useful-links {
+        height: 200px;
+        width: 130px;
+
+    }
+
+    #footer-contact {
+        height: 200px;
+        width: 200px;
+
+    }
+}

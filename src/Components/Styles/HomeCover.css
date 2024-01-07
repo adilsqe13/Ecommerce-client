@@ -1,0 +1,125 @@
+.cover-container-1 {
+    background-color: black;
+    max-width: 1600px;
+    width: 100%;
+    height: 580px;
+    margin: auto;
+}
+
+.cover-container-2::before {
+    content: "";
+    position: absolute;
+    top: 57px;
+    justify-content: center;
+    max-width: 1600px;
+    width: 100%;
+    height: 615px;
+    background-image: url("../../images/cover.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+}
+
+.cover-container-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* LOGO SLOGAN */
+.cover-logo-slogan-box {
+    margin-top: 110px;
+    height: 300px;
+    width: 700px;
+    min-width: 360px;
+    z-index: 100;
+}
+
+.cover-logo-box {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 290px;
+    height: 75px;
+    color: white;
+    background-color: rgb(28, 27, 27);
+    box-shadow: 0px 2px 20px black;
+}
+
+.cover-my {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: cursive, Arial, sans-serif;
+    color: red;
+}
+
+.cover-shopper {
+    font-size: 48px;
+    font-weight: bold;
+    margin-left: 3px;
+    font-family: cursive, Arial, sans-serif;
+}
+
+#slogan-box-1,
+#slogan-box-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 360px;
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+}
+
+.cover-logo-slogan-box .slogan-1 {
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+
+
+}
+
+.cover-logo-slogan-box .slogan-2 {
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: white;
+}
+
+#shop-btn-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 360px;
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+}
+
+.shop-now-btn {
+    height: 50px;
+    width: 150px;
+    margin: 0px;
+    border-radius: 17px;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: 1px 1px 5px black;
+    color: white;
+}
+
+.shop-now-btn:active {
+    box-shadow: none;
+    padding: 10px;
+
+}
+
+.shop-now-btn:hover {
+    color: black;
+}
+
+/* END LOGO SLOGAN */
