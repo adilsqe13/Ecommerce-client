@@ -49,7 +49,7 @@ export default function AddProduct() {
         <div className="row">
           <div className=" col-lg-3 col-sm-0"></div>
           <div className=" col-lg-6 col-sm-12 mini-container">
-            <h1>Add Product p</h1>
+            <h1>Add Product</h1>
             <form className='form-group'>
               <label className=' fs-4 mt-1' >Product Name</label>
               <input type='text' onChange={onChange} name='productName' value={productDetails.productName} className='form-control input-field fs-4' />
