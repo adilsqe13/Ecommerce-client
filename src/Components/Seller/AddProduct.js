@@ -36,13 +36,13 @@ export default function AddProduct() {
           },
         }
       );
+      setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
+    setImage(null);
+    showToast('Product Added', 'success');
     } catch (error) {
       console.error('Error uploading product:', error);
       showToast('Error uploading product', 'error');
     }
-    setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-    setImage(null);
-    showToast('Product Added', 'success');
   };
 
   const onInputChange = (e) => {
