@@ -108,7 +108,7 @@ export default function CartPage() {
                       <div className="p-2 mt-4">
                         <div className="d-flex justify-content-between align-items-center mb-0">
                           <h1 className="fw-bold mb-0 text-black mt-2">Order Page</h1>
-                          <h6 className="mb-0 text-muted">{cartProducts == null ? 0 : cartProducts.length} items</h6>
+                          <h6 className="mb-0 text-muted">{cartProducts === null ? 0 : cartProducts.length} items</h6>
                         </div>
                         {/* <hr className="my-4" /> */}
                         <h4 className='text-danger mt-3 dfjcac'>{cartProducts === null ? '' : cartProducts.length === 0 ? 'Yout cart is empty' : ''}</h4>
@@ -206,7 +206,7 @@ export default function CartPage() {
                           </div>
                         </div>
 
-                        <button disabled={cartProducts.length === 0} onClick={() => { makePayment(cartProducts) }} type="button" className="btn btn-danger btn-block btn-lg w-100 mt-4"
+                        <button disabled={cartProducts === null} onClick={() => { makePayment(cartProducts) }} type="button" className="btn btn-danger btn-block btn-lg w-100 mt-4"
                           data-mdb-ripple-color="dark">
                             { processing === true ? <Spinner height='25' width='25' /> : 'Place Order'}
                             </button>
