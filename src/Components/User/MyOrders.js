@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import productContext from '../../CONTEXT/Context/productContext';
 import toastContext from '../../CONTEXT/Context/toastContext';
+import Spinner from '../Spinner';
 
 export default function MyOrders() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -9,7 +10,6 @@ export default function MyOrders() {
   const myToastcontext = useContext(toastContext);
   const { productPage } = myProductcontext;
   const { showToast } = myToastcontext;
-  const navigate = useNavigate();
   const token = localStorage.getItem('userToken');
   const [orders, setOrders] = useState([]);
 
@@ -52,7 +52,6 @@ export default function MyOrders() {
   // Goto Product Page
   const handleProductPage = async (productId) => {
     await productPage(productId);
-    navigate('/product-page');
   }
 
   useEffect(() => {
@@ -63,27 +62,29 @@ export default function MyOrders() {
     <>
       <section style={{ backgroundColor: "#ffffff" }}>
         <div className="container py-5">
-          <h1>My Orders <small className='h5 text-secondary'>&nbsp; &nbsp; {orders.length} - Orders</small></h1>
+          <h1 className='mt-3'>My Orders <small className='h6 text-secondary'>&nbsp; &nbsp; {orders.length} - Orders</small></h1>
           <div className="row justify-content-center mb-3 mt-4">
-            {orders.map((item) => {
+
+          <h5 className='text-danger text-align-center dfjcac'>{orders === null ? '' : orders.length === 0 ? 'No Orders' : ''}</h5>
+            {orders === null ? <Spinner height='70' width='70' /> : orders.map((item, index) => {
               return (
-                <div className="col-md-12 col-xl-12">
+                <div key={index} className="col-md-12 col-xl-12">
                   <div className="card shadow-0 box-shadow-light rounded-3">
                     <div className="card-body">
                       <div className="row">
                         <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                          <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                            <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item.product[0]._id); }}>
+                          <div className="bg-image hover-zoom ripple rounded ripple-surface dfjcac">
+                            <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                               <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
                                 height={168}
                                 width={168} />
-                            </Link>
+                            </a>
                           </div>
                         </div>
                         <div className="col-md-6 col-lg-6 col-xl-6">
-                          <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item.product[0]._id); }}>
+                          <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                             <h5>{item.product[0].productName}</h5>
-                          </Link>
+                          </a>
                           <div className="d-flex flex-row">
                             <div className="text-danger mb-1 me-2">
                               <i className="fa fa-star">*</i>

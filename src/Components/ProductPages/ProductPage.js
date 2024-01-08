@@ -10,6 +10,7 @@ export default function ProductPage() {
   const token = localStorage.getItem('userToken');
   const sellerToken = localStorage.getItem('sellerToken');
   const [quantity, setQuantity] = useState(1);
+  const [processing, setProcessing] = useState(false);
   const myProductContext = useContext(productContext);
   const myToastContext = useContext(toastContext);
   const { product, addToCart, makePayment } = myProductContext;
@@ -30,6 +31,7 @@ export default function ProductPage() {
     }
   }
   const handleBuyNow = () => {
+    setProcessing(true);
     if (token) {
       makePayment(quantity);
     } else if (sellerToken) {
@@ -109,7 +111,9 @@ export default function ProductPage() {
                       </button>
                     </div>
                   </div>
-                  <button onClick={() => { handleBuyNow() }} className=" rounded-3 btn btn-success bn-btn shadow-0 height-50 dfjcac"> Buy now </button>
+                  <button onClick={() => { handleBuyNow() }} className=" rounded-3 btn btn-success bn-btn shadow-0 height-50 dfjcac">
+                  { processing === true ? <Spinner height='25' width='25' /> : 'Buy Now'}
+                     </button>
                   <a onClick={(e) => { handleAddToCart(product._id); e.preventDefault(); }} href="/cart-page" className="rounded-3 btn btn-dark shadow-0 atc-btn height-50 dfjcac"> Add to cart </a>
                 </div>
               </div>

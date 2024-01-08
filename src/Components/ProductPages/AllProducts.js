@@ -21,6 +21,8 @@ export default function AllProducts() {
 
     const [allProducts, setAllProducts] = useState(null);
     const [cartProducts, setCartProducts] = useState(null);
+    const [processing, setProcessing] = useState(false);
+    const [productIndex, setProductIndex] = useState('');
 
     const getAllProducts = async () => {
         const response = await fetch(`${apiUrl}/api/get-all-Products`, {
@@ -63,9 +65,10 @@ export default function AllProducts() {
     }
     const handleProductPage = async (productId) => {
         await productPage(productId);
-        navigate('/product-page');
     }
-    const handleBuyNow = async (productId) => {
+    const handleBuyNow = async (productId, index) => {
+        setProcessing(true);
+        setProductIndex(index);
         if (token) {
             const response = await fetch(`${apiUrl}/api/seller/get-a-product/${productId}`, {
                 method: 'GET',
@@ -119,11 +122,11 @@ export default function AllProducts() {
                             return (
                                 <div key={index} className="col">
                                     <div className="card product-card">
-                                        <a href='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
+                                        <a href='/product-page' onClick={(e) => { handleProductPage(item._id); }}>
                                             <img className="card-img-top card-product-image" src={item.image} alt='img' />
                                         </a>
                                         <div className="card-body p-0">
-                                            <a href='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
+                                            <a href='/product-page' onClick={(e) => { handleProductPage(item._id); }}>
                                                 <div>
                                                     <h5 className="card-title card-title-2">{item.productName}</h5>
                                                     <span className="rate"><span>Rs.</span><strong>{item.price}</strong> &nbsp; &nbsp;
@@ -131,12 +134,14 @@ export default function AllProducts() {
                                                     <span className="delivery-days">Delivery with in 4-5 days</span>
                                                 </div>   </a>
                                             <button disabled={cartProducts === null ? '' : cartProducts.filter((e) => e.productId === item._id).length > 0}
-                                                onClick={(e) => { handleAddToCart(item._id); e.preventDefault(); }} href="/" className=" rounded-3 btn btn-dark atc-btn">
+                                                onClick={(e) => { handleAddToCart(item._id); e.preventDefault(); }}  className=" rounded-3 btn btn-dark atc-btn">
                                                 <FontAwesomeIcon icon={faCartShopping} style={{ color: "#ffffff" }} />
                                                 &nbsp; {cartProducts === null ? 'Add to Cart'
                                                     : cartProducts.filter((e) => e.productId === item._id).length === 0 ? `Add to Cart`
                                                         : `Added`}</button><br />
-                                            <button onClick={() => { handleBuyNow(item._id) }} className=" rounded-3 btn btn-success bn-btn">Buy Now</button>
+                                            <button onClick={() => { handleBuyNow(item._id, index) }} className=" rounded-3 btn btn-success bn-btn">
+                                            { processing === true ? index === productIndex ?<Spinner height='21' width='21' /> : 'Buy Now' : 'Buy Now'}
+                                                </button>
                                         </div>
                                     </div>
                                 </div>

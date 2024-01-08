@@ -81,7 +81,6 @@ export default function CartPage() {
 
   const handleProductPage = async (productId) => {
     await productPage(productId);
-    navigate('/product-page');
   }
 
   const handleCheckoutBtn = async () => {
@@ -111,30 +110,30 @@ export default function CartPage() {
             <div className="col-12">
               <div className="card card-registration card-registration-2" style={{ borderRadius: "15px" }}>
                 <div className="card-body p-0">
-                  <div className="row g-0">
+                  <div className="row g-0 mt-4">
                     <div className="col-lg-8">
-                      <div className="p-5">
+                      <div className="p-2">
                         <div className="d-flex justify-content-between align-items-center mb-5">
-                          <h1 className="fw-bold mb-0 text-black">Shopping Cart</h1>
+                          <h1 className="fw-bold mb-0 text-black mt-2">Shopping Cart</h1>
                           <h6 className="mb-0 text-muted">{cartProducts == null ? 0 : cartProducts.length} items</h6>
                         </div>
-                        <hr className="my-4" />
+                        {/* <hr className="my-4" /> */}
                         <h4 className='text-danger'>{cartProducts === null ? '' : cartProducts.length === 0 ? 'Yout cart is empty' : ''}</h4>
                         {cartProducts === null ? <Spinner height='70' width='70' /> : cartProducts.map((item, index) => {
                           return (
-                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center">
-                              <div className="col-md-2 col-lg-2 col-xl-2">
-                                <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item.product[0]._id); }}>
+                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center border border-2 border-warning rounded-2 p-2">
+                              <div className="col-md-2 col-lg-2 col-xl-2 dfjcac">
+                                <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                                   <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
                                     height={200}
                                     width={140} />
-                                </Link>
+                                </a>
                               </div>
                               <div className="col-md-3 col-lg-3 col-xl-3">
                                 <h6 className="text-muted">{item.product[0].category}</h6>
-                                <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item.product[0]._id); }}>
+                                <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                                   <h6 className="text-black mb-0">{item.product[0].productName}</h6>
-                                </Link>
+                                </a>
                               </div>
                               <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
                                 <button disabled={item.quantity == 1} className="btn btn-link px-2" onClick={(e) => { e.preventDefault(); handleIncDec(item._id, -1); }}>
@@ -164,12 +163,13 @@ export default function CartPage() {
                                 </a>
                               </div>
                             </div>
+                        
                           )
                         })
                         }
 
 
-                        <hr className="my-4" />
+                        {/* <hr className="my-4" /> */}
 
                         <div className="pt-5">
                           <h6 className="mb-0"><a href="/allProducts" className="text-body">
@@ -178,7 +178,7 @@ export default function CartPage() {
                       </div>
                     </div>
                     <div className="col-lg-4 bg-grey">
-                      <div className="p-5">
+                      <div className="p-2">
                         <h3 className="fw-bold mb-1 mt-0 pt-0">Summary</h3>
                         <hr className="my-3" />
 
