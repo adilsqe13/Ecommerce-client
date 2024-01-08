@@ -120,7 +120,7 @@ export default function CartPage() {
                         </div>
                         <hr className="my-4" />
                         <h4 className='text-danger'>{cartProducts === null ? '' : cartProducts.length === 0 ? 'Yout cart is empty' : ''}</h4>
-                        {cartProducts === null ? <Spinner /> : cartProducts.map((item, index) => {
+                        {cartProducts === null ? <Spinner height='70' width='70' /> : cartProducts.map((item, index) => {
                           return (
                             <div key={index} className="row mb-4 d-flex justify-content-between align-items-center">
                               <div className="col-md-2 col-lg-2 col-xl-2">
@@ -184,10 +184,10 @@ export default function CartPage() {
 
                         <div className="row">
                           <div className="col-7">
-                            <h5 className="text-uppercase">piece - {cartProducts == null ? 0 : totalPiece}</h5>
+                            <h6 className="text-uppercase">piece - {cartProducts == null ? 0 : totalPiece}</h6>
                           </div>
                           <div className="col-5">
-                            <h5 className='text-green bold text-align-right'>Rs.{itemsAmount}/-</h5>
+                            <h6 className='text-green bold text-align-right'>Rs.{itemsAmount}/-</h6>
                           </div>
                         </div>
 
@@ -203,26 +203,26 @@ export default function CartPage() {
                         <hr className="my-4" />
                         <div className="row">
                           <div className="col-6">
-                            <h5 >Taxable Amount</h5>
+                            <h6 >Taxable Amount</h6>
                           </div>
                           <div className="col-6">
-                            <h5 className='text-green bold text-align-right'>Rs.{itemsAmount}/-</h5>
+                            <h6 className='text-green bold text-align-right'>Rs.{itemsAmount}/-</h6>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-6">
-                            <h5 >GST - 18%</h5>
+                            <h6 >GST - 18%</h6>
                           </div>
                           <div className="col-6">
-                            <h5 className='text-green bold text-align-right'>Rs.{gst}/-</h5>
+                            <h6 className='text-green bold text-align-right'>Rs.{gst}/-</h6>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-7">
-                            <h5 >Shipping Charge</h5>
+                            <h6 >Shipping Charge</h6>
                           </div>
                           <div className="col-5">
-                            <h5 className='text-primary text-align-right'>Free</h5>
+                            <h6 className='text-primary text-align-right'>Free</h6>
                           </div>
                         </div>
 
@@ -230,10 +230,10 @@ export default function CartPage() {
 
                         <div className="row mt-2">
                           <div className="col-6">
-                            <h5 className='bold'>Total Amount</h5>
+                            <h6 className='bold'>Total Amount</h6>
                           </div>
                           <div className="col-6">
-                            <h5 className='text-green bold text-align-right'>Rs.{(parseFloat(itemsAmount) + parseFloat(gst)).toFixed(2)}/-</h5>
+                            <h6 className='text-green bold text-align-right'>Rs.{(parseFloat(itemsAmount) + parseFloat(gst)).toFixed(2)}/-</h6>
                           </div>
                         </div>
 

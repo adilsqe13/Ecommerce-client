@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import toastContext from '../../CONTEXT/Context/toastContext';
+import Spinner from '../Spinner';
 
 export default function AddProduct() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -15,8 +16,10 @@ export default function AddProduct() {
     subCategory: '',
   });
   const [image, setImage] = useState('');
+  const [cloudinaryUrl, setCloudinaryUrl] = useState('');
 
   const handleAddProduct = async (e) => {
+    setCloudinaryUrl('processing');
     e.preventDefault();
 
     const formData = new FormData();
@@ -36,7 +39,8 @@ export default function AddProduct() {
           },
         }
       );
-      const cloudinaryUrl = response.data.secure_url;
+      setCloudinaryUrl(response.data.secure_url);
+      // const cloudinaryUrl = 'image'; 
       await axios.post(
         `${apiUrl}/api/seller/add-product`,
         {
@@ -73,60 +77,6 @@ export default function AddProduct() {
   const onChange = (event) => {
     setProductDetails({ ...productDetails, [event.target.name]: event.target.value });
   };
-
-  // import React, { useState, useContext } from 'react';
-  // import axios from 'axios';
-  // import toastContext from '../../CONTEXT/Context/toastContext';
-
-  // export default function AddProduct() {
-  //   const apiUrl = process.env.REACT_APP_API_URL;
-  //   const context = useContext(toastContext);
-  //   const { showToast } = context;
-  //   const token = localStorage.getItem('sellerToken');
-  //   const [productDetails, setProductDetails] = useState({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-  //   const [image, setImage] = useState(null);
-
-  //   const handleAddProduct = async (e) => {
-  //     e.preventDefault();
-
-  //     const formData = new FormData();
-  //     formData.append("image", image);
-  //     formData.append("productName", productDetails.productName);
-  //     formData.append("category", productDetails.category);
-  //     formData.append("subCategory", productDetails.subCategory);
-  //     formData.append("price", productDetails.price);
-  //     formData.append("stockQuantity", productDetails.stockQuantity);
-  //     try {
-  //       await axios.post(
-  //         `${apiUrl}/api/seller/add-product`,
-  //         formData,
-  //         {
-  //           headers: {
-  //             "Content-Type": "multipart/form-data",
-  //             "auth-token": token
-  //           },
-  //           onUploadProgress: (progressEvent) => {
-  //             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-  //             console.log('Upload Progress:', percentCompleted);
-  //             // Update UI with the upload progress if needed
-  //           },
-  //         }
-  //       );
-  //       setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-  //       setImage(null);
-  //       showToast('Product Added', 'success');
-  //     } catch (error) {
-  //       console.error('Error uploading product:', error);
-  //       showToast('Error uploading product', 'error');
-  //     }
-  //   };
-
-  //   const onInputChange = (e) => {
-  //     setImage(e.target.files[0]);
-  //   }
-  //   const onChange = (event) => {
-  //     setProductDetails({ ...productDetails, [event.target.name]: event.target.value });
-  //   }
 
   return (
     <>
@@ -167,7 +117,9 @@ export default function AddProduct() {
                 productDetails.category === '' ||
                 productDetails.subCategory === '' ||
                 image === null
-              } onClick={handleAddProduct} className='btn btn-warning form-control mt-4 fs-4 bold '>Submit</button>
+              } onClick={handleAddProduct} className='btn btn-warning form-control mt-4 fs-4 bold '>
+                { cloudinaryUrl === 'processing' ? <Spinner height='30' width='30' /> : 'Submit'}
+                </button>
             </form>
           </div>
           <div className=" col-lg-3 col-sm-0"></div>

@@ -74,7 +74,7 @@ export default function AllSellerProducts() {
             </tr>
           </thead>
           <tbody>
-            {allProducts == null ? <Spinner /> : allProducts.map((item, index) => (
+            {allProducts == null ? <Spinner height='70' width='70' /> : allProducts.map((item, index) => (
               <tr key={item._id}>
                 <th scope="row" className='screen-sm'>{index + 1}</th>
                 <td><img src={item.image} alt='img'

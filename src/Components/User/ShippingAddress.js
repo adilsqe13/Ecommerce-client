@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toastContext from '../../CONTEXT/Context/toastContext';
 import profileContext from '../../CONTEXT/Context/profileContext';
+import Spinner from '../Spinner';
 
 
 export default function Register() {
@@ -17,10 +18,12 @@ export default function Register() {
     state: profile.length === 0 ? '' : profile[0].state,
     postalCode: profile.length === 0 ? '' : profile[0].postalCode
   });
+  const [processing , setProcessing] = useState(false);
   const navigate = useNavigate();
-  const handleSave = async (e) => {
-    e.preventDefault();
 
+  const handleSave = async (e) => {
+    setProcessing(true);
+    e.preventDefault();
     const response = await fetch(`${apiUrl}/api/user/save-shipping-address`, {
       method: 'PUT',
       headers: {
@@ -36,6 +39,7 @@ export default function Register() {
     });
     try {
       const json = await response.json();
+      setProcessing(false);
       if (json.success) {
         navigate('/place-order-page');
         showToast('Address Saved', 'success');
@@ -61,14 +65,16 @@ export default function Register() {
             <h1 className=''>Shipping Address</h1>
             <form className='form-group mt-4'>
               <label className=' fs-4 mt-0' >Address</label>
-              <input type='text' onChange={onChange} value={userCredentials.address} name='address' className='form-control input-field fs-5' placeholder='Area, House, Nearby Location' />
+              <input type='text' onChange={onChange} value={userCredentials.address} name='address' className='form-control input-field fs-6' placeholder='Area, House, Nearby Location' />
               <label className=' fs-4 mt-0' >City</label>
-              <input type='text' onChange={onChange} value={userCredentials.city} name='city' className='form-control input-field fs-5' placeholder='Enter your city' />
+              <input type='text' onChange={onChange} value={userCredentials.city} name='city' className='form-control input-field fs-6' placeholder='Enter your city' />
               <label className=' fs-4 mt-0' >State</label>
-              <input type='text' onChange={onChange} value={userCredentials.state} name='state' className='form-control input-field fs-5' placeholder='eg. West Bengal' />
+              <input type='text' onChange={onChange} value={userCredentials.state} name='state' className='form-control input-field fs-6' placeholder='eg. West Bengal' />
               <label className=' fs-4 mt-0' >Postal Code</label>
-              <input type='text' onChange={onChange} value={userCredentials.postalCode} name='postalCode' className='form-control input-field fs-5' placeholder='eg. 713302' />
-              <button onClick={handleSave} className='btn btn-danger form-control mt-4 fs-5  '>Save and Continue</button>
+              <input type='text' onChange={onChange} value={userCredentials.postalCode} name='postalCode' className='form-control input-field fs-6' placeholder='eg. 713302' />
+              <button onClick={handleSave} className='btn btn-danger form-control mt-4 fs-5  '>
+              { processing === true ? <Spinner height='25' width='25' /> : 'Save and continue'}
+                </button>
             </form>
           </div>
           <div className=" col-lg-3 col-sm-0"></div>

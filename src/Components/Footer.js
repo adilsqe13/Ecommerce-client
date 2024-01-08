@@ -72,10 +72,10 @@ export default function Footer() {
                                     <a href="/" className="text-reset">Home</a>
                                 </p>
                                 <p>
-                                    <a href="/login" className="text-reset">Login</a>
+                                    <a href="/mens-shirts" className="text-reset">Jents Shirts</a>
                                 </p>
                                 <p>
-                                    <a href="/register" className="text-reset">Register</a>
+                                    <a href="/womens-dresses" className="text-reset">Ladies Dresses</a>
                                 </p>
                                 <p>
                                     <a href="/contacts" className="text-reset">Contact Us</a>

@@ -1,6 +1,9 @@
 .bold{
     font-weight: bolder;
 }
+/* *{
+    border: 1px solid red;
+} */
 
 /* Remove input-number up/down arrow */
 input::-webkit-outer-spin-button,

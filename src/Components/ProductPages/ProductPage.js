@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import productContext from '../../CONTEXT/Context/productContext';
 import toastContext from '../../CONTEXT/Context/toastContext';
 import ProductRiviews from '../ProductPages/ProductRiviews';
@@ -41,10 +41,10 @@ export default function ProductPage() {
   }
   return (
     <>
-      {product == null ? <Spinner /> : <section className="py-4">
+      {product == null ? <Spinner height='70' width='70' /> : <section className="py-4">
         <div className="container">
-          <div className="row gx-5">
-            <aside className="col-lg-6">
+          <div className="row">
+            <aside className="col-lg-6 ">
               <div className="rounded-4 mb-3 d-flex justify-content-center">
                 <img style={{ maxWidth: "100%", maxHeight: "100vh", "margin": "auto" }} className="rounded-4 fit" src={product.image} alt='img' height={500} width={500} />
               </div>
@@ -110,13 +110,13 @@ export default function ProductPage() {
                     </div>
                   </div>
                   <button onClick={() => { handleBuyNow() }} className=" rounded-3 btn btn-success bn-btn shadow-0 height-50 dfjcac"> Buy now </button>
-                  <Link onClick={(e) => { handleAddToCart(product._id); e.preventDefault(); }} to="/cart-page" className="rounded-3 btn btn-dark shadow-0 atc-btn height-50 dfjcac"> Add to cart </Link>
+                  <a onClick={(e) => { handleAddToCart(product._id); e.preventDefault(); }} href="/cart-page" className="rounded-3 btn btn-dark shadow-0 atc-btn height-50 dfjcac"> Add to cart </a>
                 </div>
               </div>
             </main>
           </div>
-        </div>
         <ProductRiviews productId={product._id} rating={product.rating} productName={product.productName} />
+        </div>
       </section>}
 
     </>

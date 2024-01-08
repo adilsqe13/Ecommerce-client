@@ -115,21 +115,21 @@ export default function AllProducts() {
                 </div>
                 <div className="container-fluid items-all-products mt-3">
                     <div className="row">
-                        {allProducts == null ? <Spinner /> : allProducts.map((item, index) => {
+                        {allProducts == null ? <Spinner height='70' width='70' /> : allProducts.map((item, index) => {
                             return (
                                 <div key={index} className="col">
                                     <div className="card product-card">
-                                        <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
+                                        <a href='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
                                             <img className="card-img-top card-product-image" src={item.image} alt='img' />
-                                        </Link>
+                                        </a>
                                         <div className="card-body p-0">
-                                            <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
+                                            <a href='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
                                                 <div>
                                                     <h5 className="card-title card-title-2">{item.productName}</h5>
                                                     <span className="rate"><span>Rs.</span><strong>{item.price}</strong> &nbsp; &nbsp;
                                                     </span> <br />
                                                     <span className="delivery-days">Delivery with in 4-5 days</span>
-                                                </div>   </Link>
+                                                </div>   </a>
                                             <button disabled={cartProducts === null ? '' : cartProducts.filter((e) => e.productId === item._id).length > 0}
                                                 onClick={(e) => { handleAddToCart(item._id); e.preventDefault(); }} href="/" className=" rounded-3 btn btn-dark atc-btn">
                                                 <FontAwesomeIcon icon={faCartShopping} style={{ color: "#ffffff" }} />
