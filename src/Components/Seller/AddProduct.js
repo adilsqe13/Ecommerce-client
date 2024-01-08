@@ -1,12 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Image, Transformation } from 'cloudinary-react'; // Import Cloudinary components
 import toastContext from '../../CONTEXT/Context/toastContext';
-import {Cloudinary} from "@cloudinary/url-gen";
-
-// const App = () => {
-//   const cld = new Cloudinary({cloud: {cloudName: 'digcjdyd3'}});
-// };
 
 export default function AddProduct() {
   const apiUrl = process.env.REACT_APP_API_URL;
@@ -20,14 +14,15 @@ export default function AddProduct() {
     category: '',
     subCategory: '',
   });
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('file', image);
-    formData.append('upload_preset', 'my_preset'); // Replace with your Cloudinary upload preset
+    formData.append('upload_preset', 'my-preset'); // Replace with your Cloudinary upload preset
+    formData.append('cloud_name', 'digcjdyd3');
 
     try {
       const response = await axios.post(
@@ -41,10 +36,7 @@ export default function AddProduct() {
           },
         }
       );
-
       const cloudinaryUrl = response.data.secure_url;
-      // Now you can use the cloudinaryUrl for your product image
-
       await axios.post(
         `${apiUrl}/api/seller/add-product`,
         {
@@ -82,59 +74,59 @@ export default function AddProduct() {
     setProductDetails({ ...productDetails, [event.target.name]: event.target.value });
   };
 
-// import React, { useState, useContext } from 'react';
-// import axios from 'axios';
-// import toastContext from '../../CONTEXT/Context/toastContext';
+  // import React, { useState, useContext } from 'react';
+  // import axios from 'axios';
+  // import toastContext from '../../CONTEXT/Context/toastContext';
 
-// export default function AddProduct() {
-//   const apiUrl = process.env.REACT_APP_API_URL;
-//   const context = useContext(toastContext);
-//   const { showToast } = context;
-//   const token = localStorage.getItem('sellerToken');
-//   const [productDetails, setProductDetails] = useState({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-//   const [image, setImage] = useState(null);
+  // export default function AddProduct() {
+  //   const apiUrl = process.env.REACT_APP_API_URL;
+  //   const context = useContext(toastContext);
+  //   const { showToast } = context;
+  //   const token = localStorage.getItem('sellerToken');
+  //   const [productDetails, setProductDetails] = useState({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
+  //   const [image, setImage] = useState(null);
 
-//   const handleAddProduct = async (e) => {
-//     e.preventDefault();
+  //   const handleAddProduct = async (e) => {
+  //     e.preventDefault();
 
-//     const formData = new FormData();
-//     formData.append("image", image);
-//     formData.append("productName", productDetails.productName);
-//     formData.append("category", productDetails.category);
-//     formData.append("subCategory", productDetails.subCategory);
-//     formData.append("price", productDetails.price);
-//     formData.append("stockQuantity", productDetails.stockQuantity);
-//     try {
-//       await axios.post(
-//         `${apiUrl}/api/seller/add-product`,
-//         formData,
-//         {
-//           headers: {
-//             "Content-Type": "multipart/form-data",
-//             "auth-token": token
-//           },
-//           onUploadProgress: (progressEvent) => {
-//             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-//             console.log('Upload Progress:', percentCompleted);
-//             // Update UI with the upload progress if needed
-//           },
-//         }
-//       );
-//       setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-//       setImage(null);
-//       showToast('Product Added', 'success');
-//     } catch (error) {
-//       console.error('Error uploading product:', error);
-//       showToast('Error uploading product', 'error');
-//     }
-//   };
+  //     const formData = new FormData();
+  //     formData.append("image", image);
+  //     formData.append("productName", productDetails.productName);
+  //     formData.append("category", productDetails.category);
+  //     formData.append("subCategory", productDetails.subCategory);
+  //     formData.append("price", productDetails.price);
+  //     formData.append("stockQuantity", productDetails.stockQuantity);
+  //     try {
+  //       await axios.post(
+  //         `${apiUrl}/api/seller/add-product`,
+  //         formData,
+  //         {
+  //           headers: {
+  //             "Content-Type": "multipart/form-data",
+  //             "auth-token": token
+  //           },
+  //           onUploadProgress: (progressEvent) => {
+  //             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+  //             console.log('Upload Progress:', percentCompleted);
+  //             // Update UI with the upload progress if needed
+  //           },
+  //         }
+  //       );
+  //       setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
+  //       setImage(null);
+  //       showToast('Product Added', 'success');
+  //     } catch (error) {
+  //       console.error('Error uploading product:', error);
+  //       showToast('Error uploading product', 'error');
+  //     }
+  //   };
 
-//   const onInputChange = (e) => {
-//     setImage(e.target.files[0]);
-//   }
-//   const onChange = (event) => {
-//     setProductDetails({ ...productDetails, [event.target.name]: event.target.value });
-//   }
+  //   const onInputChange = (e) => {
+  //     setImage(e.target.files[0]);
+  //   }
+  //   const onChange = (event) => {
+  //     setProductDetails({ ...productDetails, [event.target.name]: event.target.value });
+  //   }
 
   return (
     <>
@@ -168,7 +160,7 @@ export default function AddProduct() {
               <label className=' fs-4 mt-1 ' >Stock Quantity</label>
               <input type='number' onChange={onChange} name='stockQuantity' value={productDetails.stockQuantity} className='form-control input-field fs-4' />
               <label className='fs-6 mt-4 text-primary bold' >Upload Product Image</label> &nbsp;
-              <input type="file" accept='image/*' onChange={onInputChange} />
+              <input type="file" onChange={onInputChange} />
               <button disabled={productDetails.productName === '' ||
                 productDetails.price === '' ||
                 productDetails.stockQuantity === '' ||

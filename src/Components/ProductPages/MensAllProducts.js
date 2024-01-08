@@ -120,7 +120,7 @@ export default function AllProducts() {
                                 <div key={index} className="col">
                                     <div className="card product-card">
                                         <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
-                                            <img className="card-img-top card-product-image" src={require(`../../images/${item.image}`)} alt='img' />
+                                            <img className="card-img-top card-product-image" src={item.image} alt='img' />
                                         </Link>
                                         <div className="card-body p-0">
                                             <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>

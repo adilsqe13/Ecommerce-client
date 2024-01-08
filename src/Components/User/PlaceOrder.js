@@ -116,7 +116,7 @@ export default function CartPage() {
                             <div className="row mb-4 d-flex justify-content-between align-items-center">
                               <div className="col-md-2 col-lg-2 col-xl-2">
                                 <Link to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item.product[0]._id); }}>
-                                  <img className="img-fluid rounded-3" src={require(`../../images/${item.product[0].image}`)} alt='img'
+                                  <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
                                     height={200}
                                     width={140} />
                                 </Link>

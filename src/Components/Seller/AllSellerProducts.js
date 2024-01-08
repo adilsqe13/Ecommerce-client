@@ -77,7 +77,7 @@ export default function AllSellerProducts() {
             {allProducts == null ? <Spinner /> : allProducts.map((item, index) => (
               <tr key={item._id}>
                 <th scope="row" className='screen-sm'>{index + 1}</th>
-                <td><img src={require(`../../images/${item.image}`)} alt='img'
+                <td><img src={item.image} alt='img'
                   height={30}
                   width={30} /></td>
                 <td><Link className='text-light ' to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>

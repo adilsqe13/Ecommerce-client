@@ -12,29 +12,47 @@ export default function AddProduct() {
   const [image, setImage] = useState(null);
 
   const handleUpdateProduct = async (e) => {
+    e.preventDefault();
     const productId = localStorage.getItem('updateProductId');
-    setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
-    showToast('Product Updated', 'success');
+    // setProductDetails({ productName: '', price: '', stockQuantity: '', category: '', subCategory: '' });
 
     const formData = new FormData();
-    formData.append("image", image);
-    formData.append("productName", productDetails.productName);
-    formData.append("category", productDetails.category);
-    formData.append("subCategory", productDetails.subCategory);
-    formData.append("price", productDetails.price);
-    formData.append("stockQuantity", productDetails.stockQuantity);
-    formData.append("productId", productId);
+    formData.append('file', image);
+    formData.append('upload_preset', 'my-preset'); // Replace with your Cloudinary upload preset
+    formData.append('cloud_name', 'digcjdyd3');
 
-    await axios.put(
-      `${apiUrl}/api/seller/update-product`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "auth-token": token
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/digcjdyd3/image/upload`, // Replace with your Cloudinary cloud name
+        formData,
+        {
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            console.log('Upload Progress:', percentCompleted);
+            // Update UI with the upload progress if needed
+          },
+        }
+      );
+      showToast('Product Updated', 'success');
+      const cloudinaryUrl = response.data.secure_url;
+
+      await axios.put(
+        `${apiUrl}/api/seller/update-product`,
+        {
+          ...productDetails,
+          imageUrl: cloudinaryUrl,
+          productId: productId,
         },
-      }
-    );
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": token
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onInputChange = (e) => {
@@ -76,8 +94,8 @@ export default function AddProduct() {
               <label className=' fs-4 mt-1 ' >Update Stock Quantity</label>
               <input type='number' onChange={onChange} name='stockQuantity' value={productDetails.stockQuantity} className='form-control input-field fs-4' placeholder='Enter new quantity' />
               <label className='fs-6 mt-4 text-primary bold' >Upload New Product Image</label> &nbsp;
-              <input type="file" accept='image/*' onChange={onInputChange} />
-              <a href='/seller-allProducts' onClick={handleUpdateProduct} className='btn btn-warning form-control mt-4 fs-4 bold '>Update Product</a>
+              <input type="file" onChange={onInputChange} />
+              <button onClick={handleUpdateProduct} className='btn btn-warning form-control mt-4 fs-4 bold '>Update Product</button>
             </form>
           </div>
           <div className=" col-lg-3 col-sm-0"></div>

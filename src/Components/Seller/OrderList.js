@@ -40,7 +40,7 @@ export default function MyOrders() {
                                             <div className="row">
                                                 <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                                     <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                                                        <img className="img-fluid rounded-3" src={require(`../../images/${item.product[0].image}`)} alt='img'
+                                                        <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
                                                             height={168}
                                                             width={168} />
                                                     </div>

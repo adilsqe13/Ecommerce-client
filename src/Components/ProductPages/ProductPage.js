@@ -46,7 +46,7 @@ export default function ProductPage() {
           <div className="row gx-5">
             <aside className="col-lg-6">
               <div className="rounded-4 mb-3 d-flex justify-content-center">
-                <img style={{ maxWidth: "100%", maxHeight: "100vh", "margin": "auto" }} className="rounded-4 fit" src={require(`../../images/${product.image}`)} alt='img' height={500} width={500} />
+                <img style={{ maxWidth: "100%", maxHeight: "100vh", "margin": "auto" }} className="rounded-4 fit" src={product.image} alt='img' height={500} width={500} />
               </div>
             </aside>
             <main className="col-lg-6">
