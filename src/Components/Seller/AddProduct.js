@@ -40,12 +40,13 @@ export default function AddProduct() {
         }
       );
       setCloudinaryUrl(response.data.secure_url);
-      // const cloudinaryUrl = 'image'; 
+      const public_id = await response.data.public_id;
       await axios.post(
         `${apiUrl}/api/seller/add-product`,
         {
           ...productDetails,
-          imageUrl: cloudinaryUrl,
+          imageUrl: response.data.secure_url,
+          public_id: public_id,
         },
         {
           headers: {

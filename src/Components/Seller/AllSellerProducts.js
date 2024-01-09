@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import productContext from '../../CONTEXT/Context/productContext';
@@ -31,7 +32,7 @@ export default function AllSellerProducts() {
   }
 
   const handleDelete = async (_id) => {
-    await fetch(`${apiUrl}/api/seller/delete-product`, {
+    const response = await fetch(`${apiUrl}/api/seller/delete-product`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
@@ -39,6 +40,10 @@ export default function AllSellerProducts() {
       },
       body: JSON.stringify({ productId: _id })
     });
+    const json = await response.json();
+    console.log(json);
+    const public_id = json.public_id
+    await axios.delete(`https://api.cloudinary.com/v1_1/digcjdyd3/image/upload/${public_id}`);
     window.location.reload();
   }
 
