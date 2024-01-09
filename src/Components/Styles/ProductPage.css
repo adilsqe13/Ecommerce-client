@@ -7,3 +7,10 @@
 .icon-hover:hover i {
   color: #3b71ca !important;
 }
+
+@media only screen and (max-width: 801px) {
+
+  .mt-small-screen {
+      margin-top: 40px;
+  }
+}

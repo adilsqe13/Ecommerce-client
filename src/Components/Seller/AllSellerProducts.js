@@ -41,20 +41,21 @@ export default function AllSellerProducts() {
       body: JSON.stringify({ productId: _id })
     });
     const json = await response.json();
-    console.log(json);
-    const public_id = json.public_id
-    await axios.delete(`https://api.cloudinary.com/v1_1/digcjdyd3/image/upload/${public_id}`);
-    window.location.reload();
+    if(json.success){
+      window.location.reload();
+    }
   }
 
   const handleProductPage = async (productId) => {
     await productPage(productId);
     navigate('/product-page');
+    window.scrollTo(0, 0);
   }
 
   const handleEditProduct = (productId) => {
     localStorage.setItem('updateProductId', productId);
     navigate('/update-product');
+    window.scrollTo(0, 0);
   }
 
   useEffect(() => {
@@ -88,7 +89,7 @@ export default function AllSellerProducts() {
                 <td><Link className='text-light ' to='/product-page' onClick={(e) => { e.preventDefault(); handleProductPage(item._id); }}>
                   {item.productName}</Link></td>
                 <td className='screen-sm'>{item.date.slice(0, 10)}</td>
-                <td><span className='text-green-light dftcac'>${item.price}</span></td>
+                <td><span className='text-green-light dftcac'>Rs. {item.price} /-</span></td>
                 <td>&nbsp;{item.stockQuantity}</td>
                 <td className='screen-sm'> &nbsp;
                   <a onClick={() => { handleEditProduct(item._id) }} href='/update-product'><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ededed", }} /></a>

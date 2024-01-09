@@ -42,9 +42,11 @@ export default function Register() {
       setProcessing(false);
       if (json.success) {
         navigate('/place-order-page');
+        window.scrollTo(0, 0);
         showToast('Address Saved', 'success');
       } else {
         navigate('/shipping-address');
+        window.scrollTo(0, 0);
         showToast('Something went wrong', 'error');
       }
     } catch (error) {

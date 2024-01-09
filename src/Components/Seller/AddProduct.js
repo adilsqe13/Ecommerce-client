@@ -17,6 +17,8 @@ export default function AddProduct() {
   });
   const [image, setImage] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
+  const [uploadPercent, setUploadPercent] = useState('');
+
 
   const handleAddProduct = async (e) => {
     setCloudinaryUrl('processing');
@@ -34,8 +36,7 @@ export default function AddProduct() {
         {
           onUploadProgress: (progressEvent) => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            console.log('Upload Progress:', percentCompleted);
-            // Update UI with the upload progress if needed
+            setUploadPercent(percentCompleted + '%')
           },
         }
       );
@@ -64,9 +65,13 @@ export default function AddProduct() {
         subCategory: '',
       });
       setImage(null);
+      window.scrollTo(0, 0);
       showToast('Product Added', 'success');
+      setUploadPercent('')
     } catch (error) {
       console.error('Error uploading product:', error);
+      setUploadPercent('')
+      window.scrollTo(0, 0);
       showToast('Error uploading product', 'error');
     }
   };
@@ -110,7 +115,7 @@ export default function AddProduct() {
               <input type='number' onChange={onChange} name='price' value={productDetails.price} className='form-control input-field fs-4' />
               <label className=' fs-4 mt-1 ' >Stock Quantity</label>
               <input type='number' onChange={onChange} name='stockQuantity' value={productDetails.stockQuantity} className='form-control input-field fs-4' />
-              <label className='fs-6 mt-4 text-primary bold' >Upload Product Image</label> &nbsp;
+              <label className='fs-6 mt-4 text-primary bold' >Upload Product Image  &nbsp; <span className='text-danger'>{uploadPercent}</span></label> &nbsp;
               <input type="file" onChange={onInputChange} />
               <button disabled={productDetails.productName === '' ||
                 productDetails.price === '' ||
@@ -119,7 +124,7 @@ export default function AddProduct() {
                 productDetails.subCategory === '' ||
                 image === null
               } onClick={handleAddProduct} className='btn btn-warning form-control mt-4 fs-4 bold '>
-                { cloudinaryUrl === 'processing' ? <Spinner height='30' width='30' /> : 'Submit'}
+                { uploadPercent !== '' ? <Spinner height='30' width='30' /> : 'Submit'}
                 </button>
             </form>
           </div>

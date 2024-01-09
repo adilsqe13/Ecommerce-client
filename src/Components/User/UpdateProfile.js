@@ -41,9 +41,11 @@ export default function Register() {
       if (json.success) {
         localStorage.setItem('userFullName', json.updatedProfile[0].fullName);
         navigate('/profile');
+        window.scrollTo(0, 0);
         showToast('Profile Updated', 'success');
       } else {
         navigate('/update-profile');
+        window.scrollTo(0, 0);
         showToast('Something went wrong', 'error');
       }
     } catch (error) {

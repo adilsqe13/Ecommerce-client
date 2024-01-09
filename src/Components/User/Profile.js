@@ -30,12 +30,14 @@ export default function SellerProfile() {
 
     const handleEditProfile = () => {
         navigate('/update-profile');
+        window.scrollTo(0, 0);
     }
     const handleDeleteAccount = async () => {
         try {
             localStorage.removeItem('userToken');
             localStorage.removeItem('userFullName');
             navigate('/register');
+            window.scrollTo(0, 0);
             showToast('Account Deleted', 'warn');
             await fetch(`${apiUrl}/api/user/delete-account`, {
                 method: 'DELETE',
@@ -103,7 +105,7 @@ export default function SellerProfile() {
 
                                                 </div>
                                                 <div className="col-6">
-                                                    <button onClick={handleDeleteAccount} className='btn btn-danger'>Delete Account</button>
+                                                    <button onClick={handleDeleteAccount} className='btn btn-danger'>Delete</button>
 
                                                 </div>
                                             </div>

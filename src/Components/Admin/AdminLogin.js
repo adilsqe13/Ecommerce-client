@@ -25,9 +25,11 @@ export default function AdminLogin() {
         localStorage.setItem('adminToken', json.authToken);
         localStorage.setItem('adminName', json.adminFullName);
         navigate('/dashboard');
+        window.scrollTo(0, 0);
         showToast('Logged In Successfully', 'success');
       } else {
         navigate('/admin-login');
+        window.scrollTo(0, 0);
         showToast('Invalid Credentials', 'error');
       }
     } catch (error) {
@@ -42,8 +44,6 @@ export default function AdminLogin() {
     <>
       <div className="container margin-top-md py-5">
         <div className="row">
-          <div className="col-6 dfjeac"><span className='bold'>TEST EMAIL: </span> adilsqe13@gmail.com</div>
-          <div className="col-6"><span className='bold'>TEST PASSWORD: </span> 123456789</div>
         </div>
         <div className="row mt-2">
           <div className=" col-lg-3 col-sm-0"></div>
@@ -51,9 +51,9 @@ export default function AdminLogin() {
             <h1 className='text-green'>Admin Login</h1>
             <form className='form-group mt-4'>
               <label className=' fs-4 mt-1' >Email</label>
-              <input type='email' onChange={onChange} value={adminCredentials.email} name='email' autoComplete="username" className='form-control input-field fs-5' placeholder='TEST- adilsqe13@gmail.com' />
+              <input type='email' onChange={onChange} value={adminCredentials.email} name='email' autoComplete="username" className='form-control input-field fs-5'  />
               <label className=' fs-4 mt-1 ' >Password</label>
-              <input type='password' onChange={onChange} value={adminCredentials.password} name='password' autoComplete="password" className='form-control input-field fs-5' placeholder='TEST- 123456789' />
+              <input type='password' onChange={onChange} value={adminCredentials.password} name='password' autoComplete="password" className='form-control input-field fs-5' />
               <button onClick={handleLogin} className='btn btn-danger form-control mt-2 fs-4 bold  '>Login</button>
             </form>
           </div>

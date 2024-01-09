@@ -56,6 +56,7 @@ export default function CartPage() {
       console.log(error);
       if (!token) {
         navigate('/login');
+        window.scrollTo(0, 0);
       }
     }
   }
@@ -88,6 +89,7 @@ export default function CartPage() {
       }
     } else if (selectedMethod === 'COD') {
       navigate('/order-success');
+      window.scrollTo(0, 0);
     }
   }
 

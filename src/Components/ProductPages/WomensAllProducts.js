@@ -41,6 +41,7 @@ export default function AllProducts() {
         const response = await addToCart(id);
         if (response === false) {
             navigate('/login');
+            window.scrollTo(0, 0);
         }
     }
 
@@ -64,6 +65,7 @@ export default function AllProducts() {
     const handleProductPage = async (productId) => {
         await productPage(productId);
         navigate('/product-page');
+        window.scrollTo(0, 0);
     }
     const handleBuyNow = async (productId) => {
         if (token) {
@@ -99,6 +101,7 @@ export default function AllProducts() {
             showToast('You are in a seller account', 'warn');
         } else {
             navigate('/login');
+            window.scrollTo(0, 0);
             showToast('You Must Login First', 'warn');
         }
     }

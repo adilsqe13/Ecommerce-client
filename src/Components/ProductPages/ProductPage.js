@@ -21,6 +21,7 @@ export default function ProductPage() {
     const response = await addToCart(id);
     if (response === false) {
       navigate('/login');
+      window.scrollTo(0, 0);
     }
   }
   const handlePlusMinus = (incdec) => {
@@ -38,13 +39,15 @@ export default function ProductPage() {
       showToast('You are in a seller account', 'warn');
     } else {
       navigate('/login');
+      window.scrollTo(0, 0);
       showToast('You Must Login First', 'warn');
     }
   }
   return (
     <>
-      {product == null ? <Spinner height='70' width='70' /> : <section className="py-4">
-        <div className="container">
+      {product == null ? <div className='margin-top-lg'><Spinner height='70' width='70' /></div> : 
+      <section className="py-4">
+        <div className="container mt-small-screen">
           <div className="row">
             <aside className="col-lg-6 ">
               <div className="rounded-4 mb-3 d-flex justify-content-center">
@@ -112,14 +115,14 @@ export default function ProductPage() {
                     </div>
                   </div>
                   <button onClick={() => { handleBuyNow() }} className=" rounded-3 btn btn-success bn-btn shadow-0 height-50 dfjcac">
-                  { processing === true ? <Spinner height='25' width='25' /> : 'Buy Now'}
-                     </button>
+                    {processing === true ? <Spinner height='25' width='25' /> : 'Buy Now'}
+                  </button>
                   <a onClick={(e) => { handleAddToCart(product._id); e.preventDefault(); }} href="/cart-page" className="rounded-3 btn btn-dark shadow-0 atc-btn height-50 dfjcac"> Add to cart </a>
                 </div>
               </div>
             </main>
           </div>
-        <ProductRiviews productId={product._id} rating={product.rating} productName={product.productName} />
+          <ProductRiviews productId={product._id} rating={product.rating} productName={product.productName} />
         </div>
       </section>}
 

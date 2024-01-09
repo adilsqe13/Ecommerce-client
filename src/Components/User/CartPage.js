@@ -51,6 +51,7 @@ export default function CartPage() {
       console.log(error);
       if (!token) {
         navigate('/login');
+        window.scrollTo(0, 0);
       }
     }
   }
@@ -94,6 +95,7 @@ export default function CartPage() {
         body: JSON.stringify({ selectedMethod: selectedMethod })
       });
       navigate('/shipping-address');
+      window.scrollTo(0, 0);
     } catch (error) {
       console.log(error);
     }
