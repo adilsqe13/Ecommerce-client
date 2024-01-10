@@ -3,16 +3,20 @@ import React, { useEffect } from 'react'
 export default function OrderSuccess() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const token = localStorage.getItem('userToken');
-  const productId = localStorage.getItem('productPageId');
+  const cartProductObjectId = localStorage.getItem('cartProductObjectId');
   const handleOrderConfirm = async () => {
     try {
-      await fetch(`${apiUrl}/api/user/order-successfull/${productId}`, {
+      const response = await fetch(`${apiUrl}/api/user/order-buy-success/${cartProductObjectId}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json",
           "auth-token": token
         }
       });
+      const json = await response.json();
+      if(json.success){
+        localStorage.removeItem('cartProductObjectId');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -21,8 +25,7 @@ export default function OrderSuccess() {
   useEffect(() => {
     handleOrderConfirm();
   }, []);
-
-  
+ 
   return (
     <div className='container my-4 order-success border dfjcac'>
       <div className=''>

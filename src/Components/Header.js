@@ -22,6 +22,7 @@ export default function Header() {
   const handleUserLogout = () => {
     localStorage.removeItem('userToken');
     localStorage.removeItem('userFullName');
+    localStorage.removeItem('productPageId');
   }
   const handleAdminLogout = () => {
     localStorage.removeItem('adminToken');

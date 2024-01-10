@@ -74,11 +74,23 @@ export default function ProductState(props) {
       },
       body: JSON.stringify({ product: product, quantity: quantity })
     });
-
     const json = await response.json();
+
+    if(json.id){
+      const response = await fetch(`${apiUrl}/api/user/order-successfull/${localStorage.getItem('productPageId')}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": token
+      }
+    });
+    const json = await response.json();
+    localStorage.setItem('cartProductObjectId', json.cartProductObjectId);
+  }
     const result = stripe.redirectToCheckout({
       sessionId: json.id
     });
+
 
     if (result.error) {
       console.log(result.error);

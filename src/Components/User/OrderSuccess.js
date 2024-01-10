@@ -20,6 +20,7 @@ export default function OrderSuccess() {
   useEffect(() => {
     handleOrderConfirm();
   }, []);
+ 
   return (
     <div className='container my-4 order-success border dfjcac'>
       <div className=''>

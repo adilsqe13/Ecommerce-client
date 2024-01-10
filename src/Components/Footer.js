@@ -52,13 +52,13 @@ export default function Footer() {
                                     Products
                                 </h6>
                                 <p>
-                                    <a href="/allProducts" className="text-reset">Kids</a>
+                                    <a href="/kids-allProducts" className="text-reset">Kids</a>
                                 </p>
                                 <p>
-                                    <a href="/allProducts" className="text-reset">Mens</a>
+                                    <a href="/mens-allProducts" className="text-reset">Mens</a>
                                 </p>
                                 <p>
-                                    <a href="/allProducts" className="text-reset">Womens</a>
+                                    <a href="/womens-allProducts" className="text-reset">Womens</a>
                                 </p>
                                 <p>
                                     <a href="/allProducts" className="text-reset">All Products</a>
@@ -66,7 +66,7 @@ export default function Footer() {
                             </div>
                             <div id="footer-useful-links" className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                                 <h6 className="text-uppercase fw-bold mb-4">
-                                    Useful links
+                                    Useful links 
                                 </h6>
                                 <p>
                                     <a href="/" className="text-reset">Home</a>

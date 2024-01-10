@@ -107,7 +107,7 @@ export default function MyOrders() {
                               <small className='fs-6'>Rs.</small><span className='text-green bold fs-5'>{item.amount}/-</span>
                             </div>
                             <div className="col-5 text-info">
-                              <small className='fs-6 bold'>Prepaid</small>
+                              <small className='fs-6 bold'>{item.paymentMethod}</small>
                             </div>
                           </div>
                           <div className='row'>

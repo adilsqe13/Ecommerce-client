@@ -70,6 +70,7 @@ export default function AllProducts() {
     const handleBuyNow = async (productId, index) => {
         setProcessing(true);
         setProductIndex(index);
+        localStorage.setItem('productPageId', productId);
         if (token) {
             const response = await fetch(`${apiUrl}/api/seller/get-a-product/${productId}`, {
                 method: 'GET',
@@ -89,9 +90,21 @@ export default function AllProducts() {
                 },
                 body: JSON.stringify({ product: product[0], quantity: 1 })
             });
-
+            setProcessing(false);
             const json = await response1.json();
-            const result = stripe.redirectToCheckout({
+            if (json.id) {
+                const response = await fetch(`${apiUrl}/api/user/order-successfull/${productId}`, {
+                    method: 'PUT',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": token
+                    }
+                });
+                const json = await response.json();
+                localStorage.setItem('cartProductObjectId', json.cartProductObjectId);
+                localStorage.removeItem('productPageId');
+            }
+            const result = await stripe.redirectToCheckout({
                 sessionId: json.id
             });
 
@@ -136,14 +149,14 @@ export default function AllProducts() {
                                                     <span className="delivery-days">Delivery with in 4-5 days</span>
                                                 </div>   </a>
                                             <button disabled={cartProducts === null ? '' : cartProducts.filter((e) => e.productId === item._id).length > 0}
-                                                onClick={(e) => { handleAddToCart(item._id); e.preventDefault(); }}  className=" rounded-3 btn btn-dark atc-btn">
+                                                onClick={(e) => { handleAddToCart(item._id); e.preventDefault(); }} className=" rounded-3 btn btn-dark atc-btn">
                                                 <FontAwesomeIcon icon={faCartShopping} style={{ color: "#ffffff" }} />
                                                 &nbsp; {cartProducts === null ? 'Add to Cart'
                                                     : cartProducts.filter((e) => e.productId === item._id).length === 0 ? `Add to Cart`
                                                         : `Added`}</button><br />
                                             <button onClick={() => { handleBuyNow(item._id, index) }} className=" rounded-3 btn btn-success bn-btn">
-                                            { processing === true ? index === productIndex ?<Spinner height='21' width='21' /> : 'Buy Now' : 'Buy Now'}
-                                                </button>
+                                                {processing === true ? index === productIndex ? <Spinner height='21' width='21' /> : 'Buy Now' : 'Buy Now'}
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

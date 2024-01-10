@@ -24,6 +24,7 @@ export default function Register() {
         password: userCredentials.password,
         mobile: userCredentials.mobile,
         address: userCredentials.address,
+        city: userCredentials.city,
         state: userCredentials.state,
         postalCode: userCredentials.postalCode,
       })
@@ -35,6 +36,7 @@ export default function Register() {
         localStorage.setItem('userToken', json.authToken);
         localStorage.setItem('userFullName', json.userFullName);
         navigate('/allProducts');
+        window.scrollTo(0, 0);
         showToast('Registered Succesfully', 'success');
       } else {
         navigate('/register');
@@ -75,7 +77,9 @@ export default function Register() {
               <label className=' fs-4 mt-0 ' >Mobile Number</label>
               <input type='tel' onChange={onChange} value={userCredentials.mobile} name='mobile' className='form-control input-field fs-6' placeholder='+91' />
               <label className=' fs-4 mt-0' >Address</label>
-              <input type='text' onChange={onChange} value={userCredentials.address} name='address' className='form-control input-field fs-6' placeholder='Area, City, Nearby Location' />
+              <input type='text' onChange={onChange} value={userCredentials.address} name='address' className='form-control input-field fs-6' placeholder='Area, Nearby Location' />
+              <label className=' fs-4 mt-0' >City</label>
+              <input type='text' onChange={onChange} value={userCredentials.city} name='city' className='form-control input-field fs-6' placeholder='Enter your city name' />
               <label className=' fs-4 mt-0' >State</label>
               <input type='text' onChange={onChange} value={userCredentials.state} name='state' className='form-control input-field fs-6' placeholder='eg. West Bengal' />
               <label className=' fs-4 mt-0' >Postal Code</label>

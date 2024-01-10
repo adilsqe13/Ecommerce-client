@@ -103,7 +103,7 @@ export default function CartPage() {
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12">
-              <div className="card card-registration card-registration-2" style={{ "border-radius": "15px" }}>
+              <div className="card card-registration card-registration-2 border border-light" style={{ "border-radius": "15px" }}>
                 <div className="card-body p-0">
                   <div className="row g-0">
                     <div className="col-lg-8">
@@ -112,11 +112,11 @@ export default function CartPage() {
                           <h1 className="fw-bold mb-0 text-black mt-2">Order Page</h1>
                           <h6 className="mb-0 text-muted">{cartProducts === null ? 0 : cartProducts.length} items</h6>
                         </div>
-                        {/* <hr className="my-4" /> */}
+    
                         <h4 className='text-danger mt-3 dfjcac'>{cartProducts === null ? '' : cartProducts.length === 0 ? 'Yout cart is empty' : ''}</h4>
                         {cartProducts === null ? <Spinner height='70' width='70' /> : cartProducts.map((item, index) => {
                           return (
-                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center border border-2 border-success p-2 rounded-3">
+                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center box-shadow-light mx-2 p-2 rounded-3">
                               <div className="col-md-2 col-lg-2 col-xl-2 dfjcac">
                                 <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                                   <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
@@ -137,8 +137,8 @@ export default function CartPage() {
                           )
                         })
                         }
-                        <hr className="my-4" />
-                        <div className="container">
+                        {/* <hr className="my-4" /> */}
+                        <div className="container py-4">
                           <h3 className='bold'>Shipping Address
                             &nbsp; <Link to='/shipping-address'><FontAwesomeIcon icon={faPenToSquare} size='sm' style={{ color: "#797a7a", }} /></Link>
                           </h3>
@@ -162,7 +162,7 @@ export default function CartPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-4 bg-grey">
+                    <div className="col-lg-4 bg-grey rounded-4 p-1">
                       <div className="p-2">
                         <h3 className="fw-bold mb-1 mt-0 pt-0">Summary</h3>
                         <hr className="my-3" />

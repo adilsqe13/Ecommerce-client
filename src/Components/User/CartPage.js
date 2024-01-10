@@ -108,9 +108,9 @@ export default function CartPage() {
     <>
       <section className="h-100 h-custom margin-top-minus" style={{ backgroundColor: "#ffffff" }}>
         <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-12">
-              <div className="card card-registration card-registration-2" style={{ borderRadius: "15px" }}>
+          <div className="row d-flex justify-content-center align-items-center h-100 ">
+            <div className="col-12 ">
+              <div className="card card-registration card-registration-2 border border-light" style={{ borderRadius: "15px" }}>
                 <div className="card-body p-0">
                   <div className="row g-0 mt-4">
                     <div className="col-lg-8">
@@ -118,12 +118,12 @@ export default function CartPage() {
                         <div className="d-flex justify-content-between align-items-center mb-5">
                           <h1 className="fw-bold mb-0 text-black mt-2">Shopping Cart</h1>
                           <h6 className="mb-0 text-muted">{cartProducts == null ? 0 : cartProducts.length} items</h6>
-                        </div>
-                        {/* <hr className="my-4" /> */}
+                        </div> 
+
                         <h4 className='text-danger'>{cartProducts === null ? '' : cartProducts.length === 0 ? 'Yout cart is empty' : ''}</h4>
                         {cartProducts === null ? <Spinner height='70' width='70' /> : cartProducts.map((item, index) => {
                           return (
-                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center border border-2 border-warning rounded-2 p-2">
+                            <div key={index} className="row mb-4 d-flex justify-content-between align-items-center box-shadow-light mx-2 rounded-2 p-2">
                               <div className="col-md-2 col-lg-2 col-xl-2 dfjcac">
                                 <a href='/product-page' onClick={(e) => { handleProductPage(item.product[0]._id); }}>
                                   <img className="img-fluid rounded-3" src={item.product[0].image} alt='img'
@@ -179,7 +179,7 @@ export default function CartPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-4 bg-grey">
+                    <div className="col-lg-4 bg-grey rounded-4 p-1">
                       <div className="p-2">
                         <h3 className="fw-bold mb-1 mt-0 pt-0">Summary</h3>
                         <hr className="my-3" />
