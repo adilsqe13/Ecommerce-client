@@ -37,6 +37,9 @@ import PlaceOrder from './Components/User/PlaceOrder';
 import UpdateProfile from './Components/User/UpdateProfile';
 import UpdateSellerProduct from './Components/Seller/UpdateSellerProduct';
 import OrderList from './Components/Seller/OrderList';
+import TermsOfService from './Components/TermsOfService';
+import PrivacyPolicy from './Components/PrivacyPolicy';
+import CancelRefundPolicy from './Components/CancelRefundPolicy';
 
 export default function App() {
   return (
@@ -79,6 +82,9 @@ export default function App() {
           <Route exact path='/update-profile' element={<UpdateProfile />} />
           <Route exact path='/update-product' element={<UpdateSellerProduct />} />
           <Route exact path='/seller-orders' element={<OrderList />} />
+          <Route exact path='/Terms-Of-Service' element={<TermsOfService />} />
+          <Route exact path='/Privacy-Policy' element={<PrivacyPolicy />} />
+          <Route exact path='/Cancel-Refund-Policy' element={<CancelRefundPolicy />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -69,13 +69,13 @@ export default function Footer() {
                                     Useful links 
                                 </h6>
                                 <p>
-                                    <a href="/" className="text-reset">Home</a>
+                                    <a href="/Cancel-Refund-Policy" className="text-reset">Cancel Refund Policy</a>
                                 </p>
                                 <p>
-                                    <a href="/mens-shirts" className="text-reset">Jents Shirts</a>
+                                    <a href="/Privacy-Policy" className="text-reset">Privacy Policy</a>
                                 </p>
                                 <p>
-                                    <a href="/womens-dresses" className="text-reset">Ladies Dresses</a>
+                                    <a href="/Terms-Of-Service" className="text-reset">Terms of service</a>
                                 </p>
                                 <p>
                                     <a href="/contacts" className="text-reset">Contact Us</a>

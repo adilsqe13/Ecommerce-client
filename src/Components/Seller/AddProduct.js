@@ -16,12 +16,10 @@ export default function AddProduct() {
     subCategory: '',
   });
   const [image, setImage] = useState('');
-  const [cloudinaryUrl, setCloudinaryUrl] = useState('');
   const [uploadPercent, setUploadPercent] = useState('');
 
 
   const handleAddProduct = async (e) => {
-    setCloudinaryUrl('processing');
     e.preventDefault();
 
     const formData = new FormData();
@@ -40,7 +38,7 @@ export default function AddProduct() {
           },
         }
       );
-      setCloudinaryUrl(response.data.secure_url);
+      // setCloudinaryUrl(response.data.secure_url);
       const public_id = await response.data.public_id;
       await axios.post(
         `${apiUrl}/api/seller/add-product`,
